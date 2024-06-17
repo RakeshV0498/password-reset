@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaLock } from "react-icons/fa";
 import { resetPassword } from "../../Apis/resetPassword";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function PasswordReset() {
   const { token } = useParams();
 
+  const navigate = useNavigate();
   const [passwords, setPasswords] = useState({
     password: "",
     confirmPassword: "",
@@ -47,6 +48,16 @@ function PasswordReset() {
       }
     }
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        navigate("/login");
+      }, 5000); // Navigate to login after 3 seconds
+
+      return () => clearTimeout(timer); // Clear the timer on component unmount
+    }
+  }, [successMessage, navigate]);
 
   return (
     <div
