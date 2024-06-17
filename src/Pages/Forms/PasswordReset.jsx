@@ -49,7 +49,10 @@ function PasswordReset() {
   };
 
   return (
-    <div className="container">
+    <div
+      className="container d-flex justify-content-center align-items-center"
+      style={{ minHeight: "60vh" }}
+    >
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>

@@ -28,7 +28,7 @@ function ForgotPassword() {
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "60vh" }}
     >
       <div style={{ maxWidth: "400px", width: "100%" }}>
         <h2 className="text-center mb-4">Forgot Password</h2>
