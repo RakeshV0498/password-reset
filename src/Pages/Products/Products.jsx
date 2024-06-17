@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import Product from "./Product";
-import CardDeck from "react-bootstrap/CardDeck";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { fetchProducts } from "../../Apis/productFetch";
+import { Col, Container, Row } from "react-bootstrap";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -37,14 +34,12 @@ function Products() {
   return (
     <Container fluid>
       <h2 className="text-center mb-4">Products</h2>
-      <Row>
-        <Col>
-          <CardDeck>
-            {products.map((product) => (
-              <Product key={product.id} product={product} />
-            ))}
-          </CardDeck>
-        </Col>
+      <Row xs={1} sm={2} md={3} lg={4} xl={5} xxl={6}>
+        {products.map((product) => (
+          <Col key={product.id}>
+            <Product product={product} />
+          </Col>
+        ))}
       </Row>
     </Container>
   );
