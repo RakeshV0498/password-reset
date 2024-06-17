@@ -3,7 +3,10 @@ import { backendURL } from "./constants.js";
 
 export const forgotPassword = async (email) => {
   try {
-    const response = await axios.post(`${backendURL}forgot-password`, email);
+    console.log(`${backendURL}forgot-password`);
+    const response = await axios.post(`${backendURL}forgot-password`, {
+      email,
+    });
     return await response.data;
   } catch (error) {
     console.log(error);

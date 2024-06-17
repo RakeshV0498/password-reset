@@ -2,13 +2,20 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaLock } from "react-icons/fa";
+import { resetPassword } from "../../Apis/resetPassword";
+import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 
 function PasswordReset() {
+  const { token } = useParams();
+
   const [passwords, setPasswords] = useState({
     password: "",
     confirmPassword: "",
   });
   const [validationError, setValidationError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,19 +25,26 @@ function PasswordReset() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSuccessMessage("");
+    setErrorMessage("");
+
     if (passwords.password !== passwords.confirmPassword) {
       setValidationError("Passwords do not match");
     } else {
-      // Passwords match, perform reset action here
-      console.log("Password reset");
-      // Reset form and validation
-      setPasswords({
-        password: "",
-        confirmPassword: "",
-      });
-      setValidationError("");
+      try {
+        const response = await resetPassword(token, passwords.password);
+        setSuccessMessage(response.message);
+        setPasswords({
+          password: "",
+          confirmPassword: "",
+        });
+        setValidationError("");
+      } catch (error) {
+        console.error("Error resetting password:", error);
+        setErrorMessage(error.response?.data?.message || "An error occurred");
+      }
     }
   };
 
@@ -70,12 +84,20 @@ function PasswordReset() {
           </div>
           {validationError && <p className="text-danger">{validationError}</p>}
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mt-3">
           Reset
         </Button>
+        {successMessage && (
+          <p className="text-success mt-2">{successMessage}</p>
+        )}
+        {errorMessage && <p className="text-danger mt-2">{errorMessage}</p>}
       </Form>
     </div>
   );
 }
+
+PasswordReset.propTypes = {
+  token: PropTypes.string,
+};
 
 export default PasswordReset;

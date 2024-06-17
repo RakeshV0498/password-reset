@@ -17,10 +17,11 @@ function ForgotPassword() {
     setError("");
 
     try {
-      const response = await forgotPassword();
+      const response = await forgotPassword(email);
       setMessage(response.msg);
     } catch (err) {
-      setError(err.response?.message || "Something went wrong");
+      console.log(err);
+      setError(err?.response?.data?.msg);
     }
   };
 
