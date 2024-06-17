@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import Container from "react-bootstrap/Container";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Register() {
   const initialData = {
@@ -81,6 +82,11 @@ function Register() {
             Register
           </Button>
         </Form>
+        <div className="text-center mt-3">
+          <p>
+            Already have an account? <Link to="/login">Log In</Link>
+          </p>
+        </div>
       </div>
     </Container>
   );
