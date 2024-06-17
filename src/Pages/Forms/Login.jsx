@@ -40,6 +40,12 @@ function Login() {
         </Form>
         <div className="text-center mt-3">
           <p>
+            Forgot Password? <Link to="/reset">Reset</Link>
+          </p>
+        </div>
+
+        <div className="text-center mt-3">
+          <p>
             Don&apos;t have an account? <Link to="/register">Sign Up</Link>
           </p>
         </div>
