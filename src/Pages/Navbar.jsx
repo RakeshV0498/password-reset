@@ -37,7 +37,7 @@ function MyNavbar() {
                   }
                 }}
               >
-                <FaSignOutAlt className="mr-5" />
+                <FaSignOutAlt className="me-2" />
                 Logout
               </Button>
             ) : (
@@ -48,7 +48,7 @@ function MyNavbar() {
                   navigate("/login");
                 }}
               >
-                <FaSignInAlt className="mr-5" />
+                <FaSignInAlt className="me-2" />
                 Login
               </Button>
             )}
@@ -59,7 +59,7 @@ function MyNavbar() {
                 navigate("/register");
               }}
             >
-              <FaUserPlus className="mr-1" />
+              <FaUserPlus className="me-2" />
               Sign Up
             </Button>
           </Nav>
