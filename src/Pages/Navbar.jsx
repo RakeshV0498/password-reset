@@ -34,13 +34,13 @@ function MyNavbar() {
               <FaSignInAlt className="mr-1" />
               Login
             </Button>
-            <Button variant="primary">
-              <FaUserPlus
-                className="mr-1"
-                onClick={() => {
-                  navigate("/register");
-                }}
-              />
+            <Button
+              variant="primary"
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              <FaUserPlus className="mr-1" />
               Sign Up
             </Button>
           </Nav>
