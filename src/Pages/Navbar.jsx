@@ -1,13 +1,13 @@
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
-import logoIcon from "../assets/studenticon.svg";
+import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
 
-const HomeNavbar = () => {
+const MyNavbar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="#home">
           <img
-            src={logoIcon}
+            src="path/to/your/logo.png"
             width="30"
             height="30"
             className="d-inline-block align-top"
@@ -19,9 +19,13 @@ const HomeNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Button variant="outline-primary" className="mr-2">
+              <FaSignInAlt className="mr-1" />
               Login
             </Button>
-            <Button variant="primary">Sign Up</Button>
+            <Button variant="primary">
+              <FaUserPlus className="mr-1" />
+              Sign Up
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -29,4 +33,4 @@ const HomeNavbar = () => {
   );
 };
 
-export default HomeNavbar;
+export default MyNavbar;
