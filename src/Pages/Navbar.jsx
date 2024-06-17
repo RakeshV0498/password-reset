@@ -35,7 +35,12 @@ function MyNavbar() {
               Login
             </Button>
             <Button variant="primary">
-              <FaUserPlus className="mr-1" />
+              <FaUserPlus
+                className="mr-1"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              />
               Sign Up
             </Button>
           </Nav>

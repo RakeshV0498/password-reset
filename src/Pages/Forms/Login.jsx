@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -39,7 +40,7 @@ function Login() {
         </Form>
         <div className="text-center mt-3">
           <p>
-            Don&apos;t have an account? <a href="/signup">Sign Up</a>
+            Don&apos;t have an account? <Link to="/register">Sign Up</Link>
           </p>
         </div>
       </div>
