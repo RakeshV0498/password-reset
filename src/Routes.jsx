@@ -6,6 +6,8 @@ import Login from "./Pages/Forms/Login";
 import Register from "./Pages/Forms/Register";
 import ForgotPassword from "./Pages/Forms/ForgotPassword";
 import Products from "./Pages/Products/Products";
+import PasswordReset from "./Pages/Forms/PasswordReset";
+import NoMatch from "./Pages/NoMatch";
 
 const AppRoutes = () => {
   return (
@@ -15,8 +17,10 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/reset" element={<ForgotPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset" element={<PasswordReset />} />
         <Route path="/products" element={<Products />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
       <Footer />
     </BrowserRouter>
