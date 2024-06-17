@@ -1,5 +1,5 @@
-import { Container, Row, Col, Image } from "react-bootstrap";
-import { FaCheckCircle, FaStar } from "react-icons/fa";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { FaArrowRight, FaCheckCircle, FaStar } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -18,6 +18,9 @@ const Home = () => {
           <p>
             <FaStar /> Customer Satisfaction Guaranteed
           </p>
+          <Button variant="primary" size="lg" className="mt-3">
+            View Products <FaArrowRight className="ml-2" />
+          </Button>
         </Col>
         <Col md={6}>
           <Image src="https://via.placeholder.com/500" alt="Shopping" fluid />
