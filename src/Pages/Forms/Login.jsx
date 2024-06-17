@@ -2,27 +2,48 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { userLogin } from "../../Apis/login";
 
 function Login() {
+  const isAuthenticated = Boolean(localStorage.getItem("Authenticated"));
+
+  const navigate = useNavigate();
+
   const initialData = {
     email: "",
     password: "",
   };
 
   const [loginData, setLoginData] = useState(initialData);
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    localStorage.clear();
     console.log(loginData);
+    try {
+      const response = await userLogin(loginData);
+      if (response.code === 1) {
+        localStorage.setItem("Authenticated", true);
+        localStorage.setItem("tokem", response.user);
+      }
+    } catch (error) {
+      return setMessage("Error logging in. Please check your credentials.");
+    }
+
     setLoginData(initialData);
   };
+
+  if (isAuthenticated) {
+    return navigate("/");
+  }
 
   return (
     <Container
@@ -31,6 +52,7 @@ function Login() {
     >
       <div style={{ maxWidth: "400px", width: "100%" }}>
         <h2 className="text-center mb-4">Login</h2>
+        {message && <div className="alert alert-info">{message}</div>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <div className="input-group mb-3">

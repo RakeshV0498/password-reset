@@ -1,6 +1,7 @@
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { FaArrowRight, FaCheckCircle, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import heroImg from "../assets/FlipZone.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Home = () => {
           </Button>
         </Col>
         <Col md={6}>
-          <Image src="https://via.placeholder.com/500" alt="Shopping" fluid />
+          <Image src={heroImg} alt="Shopping" fluid />
         </Col>
       </Row>
     </Container>
