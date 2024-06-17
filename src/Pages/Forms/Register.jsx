@@ -3,7 +3,8 @@ import Form from "react-bootstrap/Form";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import Container from "react-bootstrap/Container";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { userSignup } from "../../Apis/register";
 
 function Register() {
   const initialData = {
@@ -12,17 +13,36 @@ function Register() {
     password: "",
   };
 
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState(initialData);
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData);
-    setUserData({ ...initialData });
+
+    try {
+      console.log(userData);
+      const response = await userSignup(userData);
+      if (response && response.msg) {
+        setMessage(response.msg);
+        setIsError(false);
+        navigate("/login");
+        // setUserData({ ...initialData });
+      } else {
+        throw new Error("Unknown error occured");
+      }
+    } catch (error) {
+      setMessage("Error registering user");
+      setIsError(true);
+      console.log(error);
+    }
   };
 
   return (
@@ -32,6 +52,14 @@ function Register() {
     >
       <div style={{ maxWidth: "400px", width: "100%" }}>
         <h2 className="text-center mb-4">Register</h2>
+        {message && (
+          <div
+            className={`alert ${isError ? "alert-danger" : "alert-success"}`}
+            role="alert"
+          >
+            {message}
+          </div>
+        )}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicUsername">
             <div className="input-group mb-3">
