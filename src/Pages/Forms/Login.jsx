@@ -3,8 +3,27 @@ import Form from "react-bootstrap/Form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+  const initialData = {
+    email: "",
+    password: "",
+  };
+
+  const [loginData, setLoginData] = useState(initialData);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData({ ...loginData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(loginData);
+    setLoginData(initialData);
+  };
+
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
@@ -12,13 +31,19 @@ function Login() {
     >
       <div style={{ maxWidth: "400px", width: "100%" }}>
         <h2 className="text-center mb-4">Login</h2>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <div className="input-group mb-3">
               <span className="input-group-text">
                 <FaEnvelope />
               </span>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={loginData.email}
+                onChange={handleChange}
+              />
             </div>
             <Form.Text className="text-muted">
               We&apos;ll never share your email with anyone else.
@@ -30,7 +55,13 @@ function Login() {
               <span className="input-group-text">
                 <FaLock />
               </span>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={loginData.password}
+                onChange={handleChange}
+              />
             </div>
           </Form.Group>
 
