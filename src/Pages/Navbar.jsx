@@ -4,9 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import shopIcon from "../assets/store-shopper.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function MyNavbar() {
+  const navigate = useNavigate();
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -23,7 +24,13 @@ function MyNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end ">
           <Nav className="ml-auto gap-3">
-            <Button variant="outline-primary" className="mr-2">
+            <Button
+              variant="outline-primary"
+              className="mr-2"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
               <FaSignInAlt className="mr-1" />
               Login
             </Button>
