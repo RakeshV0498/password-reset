@@ -93,7 +93,7 @@ function Login() {
         </Form>
         <div className="text-center mt-3">
           <p>
-            Forgot Password? <Link to="/reset">Reset</Link>
+            Forgot Password? <Link to="/forgot-password">Reset</Link>
           </p>
         </div>
 
