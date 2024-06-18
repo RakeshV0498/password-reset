@@ -28,13 +28,12 @@ function Register() {
     e.preventDefault();
 
     try {
-      console.log(userData);
       const response = await userSignup(userData);
       if (response && response.msg) {
         setMessage(response.msg);
         setIsError(false);
         navigate("/login");
-        // setUserData({ ...initialData });
+        setUserData({ ...initialData });
       } else {
         throw new Error("Unknown error occured");
       }
